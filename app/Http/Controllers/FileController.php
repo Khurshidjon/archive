@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\File;
 use Illuminate\Http\Request;
+use App\Folder;
 
 class FileController extends Controller
 {
@@ -14,9 +15,11 @@ class FileController extends Controller
      */
     public function index()
     {
-        $folders = File::query()->where('status', 1)->where('parent_id', null)->get();
+        $folders = Folder::query()->where('status', 1)->where('parent_id', null)->get();
+        $collection_folders = Folder::query()->where('status', 1)->get();
         return view('files.index', [
-            'folders' => $folders
+            'folders' => $folders,
+            'collection_folders' => $collection_folders
         ]);
     }
 
@@ -38,10 +41,31 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
+        $files = $request->file('files');
         $request->validate([
-            'title' => 'string|max:20'
+            'files[]' => 'unique:files',
         ]);
-        File::query()->create($request->all());
+
+        foreach($files as $file)
+        {
+            $destinationPath = 'uploads/' . date('Y') . '/' . date('F') . '/' . date('d');
+            
+            $fileName = $file->getClientOriginalName(); //Get Image Name
+            $fileSize = $file->getSize(); //Get Image Size
+            $extension = $file->getClientOriginalExtension();  //Get Image Extension
+        
+            $model = new File();
+            $model->file_name = $fileName;
+            $model->file_size = $fileSize;
+            $model->file_extension = $extension;
+            $model->file_path = $destinationPath;
+            $model->folder_id = $request->post('folder_id');
+
+            if($model->save()){
+                $file->move($destinationPath, $fileName);
+            }
+        }
+
         return redirect()->back();
     }
 

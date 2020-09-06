@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Folder;
+use App\File;
 use Illuminate\Http\Request;
 
 class FolderController extends Controller
@@ -15,6 +16,7 @@ class FolderController extends Controller
     public function index()
     {
         $folders = Folder::query()->where('status', 1)->where('parent_id', null)->get();
+       
         return view('folders.index', [
             'folders' => $folders
         ]);
@@ -53,8 +55,10 @@ class FolderController extends Controller
      */
     public function show(Folder $folder)
     {
+        $files = File::query()->where('folder_id', $folder->id)->get();
         return view('folders.show', [
-            'folder' => $folder
+            'folder' => $folder,
+            'files' => $files
         ]);
     }
 

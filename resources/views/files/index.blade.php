@@ -80,7 +80,7 @@
                                </div>
                                <div class="col-6">
                                    <h2 class="text-right">
-                                       <a href="{{ route('files.create') }}" class="btn btn-primary" rel="tooltip" title="Загрузить">
+                                       <a href="{{ route('files.index') }}" class="btn btn-primary" rel="tooltip" title="Загрузить">
                                            <i style="font-size: 30px" class="material-icons">cloud_upload</i>
                                        </a>
                                    </h2>
@@ -104,41 +104,36 @@
                                 </ul>
                             </div>
                             <div class="col-md-10">
-                                <p>Folders</p>
-                                <div class="row">
-                                    @forelse($folders as $folder)
-                                    <div class="col-md-3 col-6">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="material-icons text-center">folder_open</span>
-                                                {{ $folder->title }}
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('folders.show', [$folder]) }}">Открить</a>
-                                                <a class="dropdown-item rename" href="#" data-url="{{ route('folders.update', ['folder' => $folder->id]) }}" data-title="{{ $folder->title }}" data-toggle="modal" data-target=".bd-example-modal-sm">Переименовать</a>
-                                                <a class="dropdown-item" href="#">Загрузить файл</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Удалить</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @empty
-                                        <div class="col-md-2 col-6">
-                                            <div class="btn-group">
-                                                <button type="button" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-primary" aria-haspopup="true" aria-expanded="false">
-                                                    &#x2b; Create new
-                                                </button>
-                                            </div>
-                                        </div>
-                                    @endforelse
-                                </div>
+                                <p>File upload</p>
                                 <hr>
-                                <p>Files</p>
-                                <div class="row">
-                                    <div class="col-12">
-
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                </div>
+                                @endif
+                                <form action="{{ route('files.store') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <select name="folder_id" class="form-control" id="">
+                                                <option value="">Select folder</option>
+                                                @foreach ($collection_folders as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <label for="upload" rel="tooltip" title="Загрузить">
+                                            <span style="font-size: 40px" class="material-icons">cloud_upload</span>
+                                            <p>Добавить файл</p>
+                                        </label>
+                                        <input type="file" multiple name="files[]" id="upload">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Загрузить</button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -79,18 +79,14 @@
                                    <h2><i style="color: #ffc700;" class="material-icons">folder_open</i> <b>Archive</b></h2>
                                </div>
                                <div class="col-6">
-                                   <h2 class="text-right">
-                                       <a href="{{ route('files.create') }}" class="btn btn-primary" rel="tooltip" title="Загрузить">
-                                           <i style="font-size: 30px" class="material-icons">cloud_upload</i>
-                                       </a>
-                                   </h2>
+                                   
                                </div>
                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2 files-tree-box">
                                 <ul id="myUL">
-                                    <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
+                                    <li><a href="#" data-toggle="modal" class="create_new_folder" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
                                     @foreach($folders as $folder)
                                         <li><span class="caret"> {{ $folder->title }}</span>
                                             <ul class="nested">
@@ -116,7 +112,6 @@
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{{ route('folders.show', [$folder]) }}">Открить</a>
                                                 <a class="dropdown-item rename" href="#" data-url="{{ route('folders.update', ['folder' => $folder->id]) }}" data-title="{{ $folder->title }}" data-toggle="modal" data-target=".bd-example-modal-sm">Переименовать</a>
-                                                <a class="dropdown-item" href="#">Загрузить файл</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="#">Удалить</a>
                                             </div>
@@ -131,13 +126,6 @@
                                             </div>
                                         </div>
                                     @endforelse
-                                </div>
-                                <hr>
-                                <p>Files</p>
-                                <div class="row">
-                                    <div class="col-12">
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -187,6 +175,10 @@
                         $('.folder_modal').find("#hidden_method").val('put');
                         $('#folder_title').empty().val(title)
                     });
+                    $(".create_new_folder").on("click", function () {
+                        $('#folder_title').val('');
+                    });
+
                     $('.parent_folder').on("click", function () {
                         var parent_id = $(this).attr('data-parent');
                         $('#folder_title').val('');
