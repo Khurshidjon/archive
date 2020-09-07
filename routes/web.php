@@ -26,6 +26,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('search-modal', 'FolderController@searchModal')->name('search.modal');
+    Route::get('search-result', 'FolderController@searchResult')->name('search.result');
+    Route::get('create-file-modal', 'FolderController@createFileModal')->name('create.file.modal');
     Route::resource('folders', 'FolderController');
     Route::resource('files', 'FileController');
 

@@ -3,47 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d723ade0-3556-4300-b6e0-9b1c94245a61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FolderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FolderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_03_074257_create_files_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_03_074257_create_files_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/css/material-dashboard-rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/css/material-dashboard-rtl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/css/material-dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/css/material-dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/custom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/font/font-fileuploader.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/font/font-fileuploader.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/font/font-fileuploader.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/font/font-fileuploader.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/font/font-fileuploader.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/jquery.fileuploader.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/dist/jquery.fileuploader.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/fileinput.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/fileinput.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/piexif.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/popper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/purify.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/material/uploader/sortable.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/05/118215644_976118559516936_7465693335188223520_n.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/05/ChromeSetup.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/05/Вилоят_КР,_Тошкент_ш_жадваллари_масъуллар_билан.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/05/Рейтинг_суровномаси_ўтказиш_йўриқномаси_17_06_янги.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/05/Снимок экрана (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/05/Технологическая инструкция.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/118215644_976118559516936_7465693335188223520_n (1).mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/118215644_976118559516936_7465693335188223520_n.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/Composer-Setup.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/Microsoft Office 2016_setupDJWin_x86.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/Microsoft_Office_2013.torrent" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/office2016volumelicensepack_4324-1002_ru-ru_x86.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/ok.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/putty.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/stocksnap_4521.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/winrar-x64-580ru.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/Рейтинг_суровномаси_ўтказиш_йўриқномаси_17_06_янги.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/2020/September/06/Снимок экрана (1).png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/folders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/folders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +147,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/folders" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -197,6 +159,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\Laravel\archive\resources\views\folders" />
+      <recent name="C:\OpenServer\domains\Laravel\archive\resources\views\modal" />
       <recent name="C:\OpenServer\domains\Laravel\archive\resources\views\files" />
     </key>
   </component>
@@ -216,7 +180,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599117881287</updated>
-      <workItem from="1599117882668" duration="43475000" />
+      <workItem from="1599117882668" duration="50585000" />
     </task>
     <servers />
   </component>
@@ -232,6 +196,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1599117900828" />
+    <state x="2267" y="0" width="1424" height="1028" key="dock-window-1" timestamp="1599480761319">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2267" y="0" width="1424" height="1028" key="dock-window-1/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1599480761319" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1599217741585">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -102,4 +102,81 @@ class FolderController extends Controller
     {
         //
     }
+
+    /**
+     * Create file.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function createFileModal(Request $request)
+    {
+        $folder_id = $request->post('folder_id');
+        $folder = Folder::query()->find($folder_id);
+        $files = File::query()->where('folder_id', $folder->id)->get();
+        $categories = Category::query()->where('status', 1)->get();
+        $types = Type::query()->get();
+
+        return view('modal.create-file', [
+            'folder' => $folder,
+            'files' => $files,
+            'categories' => $categories,
+            'types' => $types
+        ])->render();
+    }
+
+    /**
+      @param  Request  $request
+     * Saerch the specified resource from storage.
+     */
+
+    public function searchModal(Request $request)
+    {
+        $categories = Category::query()->where('status', 1)->get();
+        $types = Type::all();
+        $folder_id = $request->get('folder_id');
+        $folder = Folder::query()->find($folder_id);
+        return view('modal.search', [
+            'categories' => $categories,
+            'types' => $types,
+            'folder' => $folder
+        ])->render();
+    }
+
+    /**
+     * Search files result.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function searchResult(Request $request)
+    {
+        $folder_id = $request->get('folder_id');
+        $folder = Folder::query()->find($folder_id);
+        $files = File::query();
+//        dd($request->title);
+        if($request->title != null){
+            $files->where('title', 'LIKE', '%'.$request->title.'%');
+        }elseif ($request->document_author != null){
+            $files->where('document_author', 'LIKE', '%'.$request->document_author.'%');
+        }elseif ($request->category_id != null){
+            $files->where('category_id', $request->category_id);
+        }elseif ($request->type_id != null){
+            $files->where('type_id', $request->type_id);
+        }elseif ($request->document_number != null){
+            $files->where('document_number', 'LIKE', '%'.$request->document_number.'%');
+        }elseif ($request->document_date != null){
+            $files->where('document_date', 'LIKE', '%'.$request->document_date.'%');
+        }elseif ($request->document_description != null){
+            $files->where('document_description', 'LIKE', '%'.$request->document_description.'%');
+        }
+        $result = $files->get();
+//        dd($result);
+
+        return view('folders.search-result', [
+            'folder' => $folder,
+            'files' => $result,
+        ]);
+    }
 }
