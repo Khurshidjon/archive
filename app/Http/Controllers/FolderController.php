@@ -19,9 +19,15 @@ class FolderController extends Controller
     public function index()
     {
         $folders = Folder::query()->where('status', 1)->where('parent_id', null)->get();
-
+        $categories = Category::query()->where('status', 1)->get();
+        $languages = Language::query()->get();
+        $types = Type::query()->get();
+        
         return view('folders.index', [
-            'folders' => $folders
+            'folders' => $folders,
+            'categories' => $categories,
+            'languages' => $languages,
+            'types' => $types,
         ]);
     }
 
