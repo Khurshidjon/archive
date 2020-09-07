@@ -116,7 +116,12 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="{{ route('folders.show', [$childFolder]) }}">Открить</a>
-                                                    <a class="dropdown-item rename" href="#" data-url="{{ route('folders.update', ['folder' => $childFolder->id]) }}" data-title="{{ $childFolder->title }}" data-toggle="modal" data-target=".bd-example-modal-sm">Переименовать</a>
+                                                    <a class="dropdown-item rename" href="#"
+                                                       data-url="{{ route('folders.update', ['folder' => $childFolder->id]) }}"
+                                                       data-title="{{ $childFolder->title }}"
+                                                       data-toggle="modal"
+                                                       data-target=".bd-example-modal-sm"
+                                                    >Переименовать</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#">Удалить</a>
                                                 </div>
@@ -134,6 +139,15 @@
                                 </div>
                                 <hr>
                                 <p>Files</p>
+                                @if ($errors->any())
+                                    @push('js')
+                                        <script>
+                                            $(function () {
+                                                $('#uploadFileModal').modal('show');
+                                            })
+                                        </script>
+                                    @endpush
+                                @endif
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
@@ -143,15 +157,15 @@
                                                         <img style="width: 50px; " src="{{ asset('material/icons/'. $item->file_extension .'.png') }}" alt="">
                                                     </div>
                                                     <p style="line-height: 12px; margin-top: 10px">
-                                                        <a href="#" class="view_detail_button" 
+                                                        <a href="#" class="view_detail_button"
                                                             data-file_name="{{ $item->file_name }}"
                                                             data-file_size="{{ $item->file_size }}"
-                                                            data-icon="{{ asset('material/icons/'. $item->file_extension .'.png') }}" 
-                                                            data-extension="{{  $item->file_extension }}" 
-                                                            data-path="{{ asset('/') . $item->file_path .'/'.$item->file_name }}" 
-                                                            data-toggle="modal" 
+                                                            data-icon="{{ asset('material/icons/'. $item->file_extension .'.png') }}"
+                                                            data-extension="{{  $item->file_extension }}"
+                                                            data-path="{{ asset('/') . $item->file_path .'/'.$item->file_name }}"
+                                                            data-toggle="modal"
                                                             data-target=".bd-example-modal-lg">
-                                                            <small>{{ $item->file_name }}</small>
+                                                            <small>{{ $item->title }}</small>
                                                         </a>
                                                     </p>
                                                 </div>
@@ -170,7 +184,7 @@
     <!-- Large modal -->
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg  modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Посмотреть детали</h5>
@@ -185,7 +199,6 @@
                         <p><b>Имя файла:</b> <span class="file_name_modal"></span></p>
                         <p><b>Тип файла:</b> <span class="file_type_modal"></span></p>
                         <p><b>Размер файла:</b> <span class="file_size_modal"></span></p>
-
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -215,10 +228,10 @@
             </div>
         </div>
     </div>
-  
+
   <!-- Upload Modal -->
     <div class="modal fade" id="uploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <form action="{{ route('files.store') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
@@ -228,12 +241,118 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="list-group">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="list-group-item">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         @csrf
                         <div class="form-group">
-                            <div class="form-group">
-                                <input type="hidden" name="folder_id" value="{{ $folder->id }}">
+                            <input type="hidden" name="folder_id" value="{{ $folder->id }}">
+                            <div class="uploader-form-box">
+                                <label for="uploader" id="uploader-label">
+                                    <input type="file" name="file_name" class="uploader-file" id="uploader">
+                                    <div class="uploader-form-left">
+                                        <span>Iltimos, yuklash uchun faylni tanlang</span>
+                                    </div>
+                                    <div class="uploader-form-right">
+                                        <span>Fayl tanlash</span>
+                                    </div>
+                                </label>
                             </div>
-                            <input type="file" multiple data-fileuploader-theme="default" name="files" class="files" id="upload">
+                            <ul class="uploader-text-box list-group">
+                                <li class="list-group-item">
+                                    <p id="uploader-text"></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="title">File title <span class="text-danger"><i>*</i></span></label>
+                            <input type="text" title="Majburiy" id="title" name="title" class="form-control" value="{{ old('title') }}">
+                            @if ($errors->has('title'))
+                                <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="document_author">Author <span class="text-success"><i>*</i></span></label>
+                            <input type="text" id="document_author" title="Ixtiyoriy" name="document_author" class="form-control" value="{{ old('document_author') }}">
+                            @if ($errors->has('title'))
+                                <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="category_id">Category <span class="text-success"><i>*</i></span></label>
+                                    <select class="form-control" title="Ixtiyoriy" name="category_id" id="category_id">
+                                        <option value="">Kategoriyani tanlang</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('title'))
+                                        <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-group">
+                                    <label for="type_id">Type <span class="text-success"><i>*</i></span></label>
+                                    <select class="form-control" name="type_id" title="Ixtiyoriy" id="type_id">
+                                        <option value="">Hujjat tipni tanlang</option>
+                                        @foreach($types as $type)
+                                            <option value="{{ $type->id }}">{{ $type->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('title'))
+                                        <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="document_number">Document number <span class="text-success"><i>*</i></span></label>
+                                    <input type="text" id="document_number" title="Ixtiyoriy" name="document_number" class="form-control" value="{{ old('document_number') }}">
+                                    @if ($errors->has('title'))
+                                        <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="document_date">Document date <span class="text-success"><i>*</i></span></label>
+                                    <input type="date" id="document_date" title="Ixtiyoriy" name="document_date" class="form-control" value="{{ old('document_date') }}">
+                                    @if ($errors->has('title'))
+                                        <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="document_description">Description <span class="text-success"><i>*</i></span></label>
+                            <textarea id="document_description" name="document_description" title="Ixtiyoriy" class="form-control">{{ old('document_description') }}</textarea>
+                            @if ($errors->has('title'))
+                                <div id="title-error" class="error text-danger pl-3" for="title" style="display: block;">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -244,6 +363,7 @@
             </div>
         </div>
     </div>
+
     <script>
         var toggler = document.getElementsByClassName("caret");
         var i;
@@ -255,52 +375,56 @@
             });
         }
     </script>
-
     @push('js')
-        <script>
-            $(function () {
-                $('.rename').on("click", function () {
-                    var url = $(this).attr('data-url')
-                    var title = $(this).attr('data-title')
+    <script>
+        $(function () {
+            $('.rename').on("click", function () {
+                var url = $(this).attr('data-url')
+                var title = $(this).attr('data-title')
 
-                    $('.folder_modal').find("#hidden_parent").val('{{ $folder->id }}');
-                    $('.folder_modal').attr("action", url);
-                    $('.folder_modal').find("#hidden_method").val('put');
-                    $('#folder_title').empty().val(title)
-                });
-
-                $(".create_new_folder").on("click", function () {
-                    $('#folder_title').val('');
-                });
-
-                $('.parent_folder').on("click", function () {
-                    var parent_id = $(this).attr('data-parent');
-                    $('#folder_title').val('');
-                    $('.folder_modal').find("#hidden_parent").val(parent_id);
-                });
-
-                $(".view_detail_button").on('click', function(){
-                    var file_ext = $(this).attr('data-extension');
-                    var file_path = $(this).attr('data-path');
-                    var file_name = $(this).attr('data-file_name');
-                    var file_icon = $(this).attr('data-icon');
-                    var file_size = $(this).attr('data-file_size');
-
-                    $('.file_name_modal').text(file_name)
-                    $('.file_size_modal').text(Math.floor(file_size / 1024) + ' KB')
-                    $('.file_type_modal').html("<span class='text-uppercase'>" + file_ext + "</span> file")
-
-                    $('.data-content').empty();
-                    if(file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'png'){
-                        $('.data-content').html("<img src='" + file_path + "' class='w-100'>");
-                    }else if(file_ext == 'mp4' || file_ext == '3gp' || file_ext == 'mov' || file_ext == 'flv' || file_ext == 'avi'){
-                        $('.data-content').html('<video style="width: 100%; height: 400px" controls><source src="'+ file_path +'" type="video/mp4"></video>');
-                    }else{
-                        $('.data-content').html("<img style='width: 50px;' src='" + file_icon + "'>");
-                    }
-                    $(".download-button").attr('href', file_path).attr('download', file_name);
-                });
+                $('.folder_modal').find("#hidden_parent").val('{{ $folder->id }}');
+                $('.folder_modal').attr("action", url);
+                $('.folder_modal').find("#hidden_method").val('put');
+                $('#folder_title').empty().val(title)
             });
-        </script>
+
+            $(".create_new_folder").on("click", function () {
+                $('#folder_title').val('');
+            });
+
+            $('.parent_folder').on("click", function () {
+                var parent_id = $(this).attr('data-parent');
+                $('#folder_title').val('');
+                $('.folder_modal').find("#hidden_parent").val(parent_id);
+            });
+
+            $(".view_detail_button").on('click', function(){
+                var file_ext = $(this).attr('data-extension');
+                var file_path = $(this).attr('data-path');
+                var file_name = $(this).attr('data-file_name');
+                var file_icon = $(this).attr('data-icon');
+                var file_size = $(this).attr('data-file_size');
+
+                $('.file_name_modal').text(file_name)
+                $('.file_size_modal').text(Math.floor(file_size / 1024) + ' KB')
+                $('.file_type_modal').html("<span class='text-uppercase'>" + file_ext + "</span> file")
+
+                $('.data-content').empty();
+                if(file_ext == 'jpg' || file_ext == 'JPG' || file_ext == 'jpeg'  || file_ext == 'JPEG' || file_ext == 'png'|| file_ext == 'PNG'){
+                    $('.data-content').html("<img src='" + file_path + "' class='w-100'>");
+                }else if(file_ext == 'mp4' || file_ext == '3gp' || file_ext == 'mov' || file_ext == 'flv' || file_ext == 'avi'){
+                    $('.data-content').html('<video style="width: 100%; height: 400px" controls><source src="'+ file_path +'" type="video/mp4"></video>');
+                }else{
+                    $('.data-content').html("<img style='width: 50px;' src='" + file_icon + "'>");
+                }
+                $(".download-button").attr('href', file_path).attr('download', file_name);
+            });
+            $('#uploader').on('change', function(e){
+                var fileName = e.target.files[0].name;
+                var fileSize = e.target.files[0].size / 1024
+                $('#uploader-text').html(fileName +  ' <span style="color: rgb(120, 155, 236)">fayli tanlandi.</span>' + Math.floor(fileSize) +  ' <span style="color: rgb(120, 155, 236)"> KB.</span>')
+            })
+        });
+    </script>
     @endpush
 @endsection

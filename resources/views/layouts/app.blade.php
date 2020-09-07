@@ -16,8 +16,8 @@
     <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
-    <link href="{{ asset('material') }}/dist/font/font-fileuploader.css" rel="stylesheet" />
-    <link href="{{ asset('material') }}/dist/jquery.fileuploader.min.css" rel="stylesheet" />
+    <link href="{{ asset('material') }}/uploader/uploader.css" rel="stylesheet" />
+
 
     </head>
     <body class="{{ $class ?? '' }}">
@@ -100,7 +100,7 @@
           </div>
         </div>
         <!--   Core JS Files   -->
-        
+
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
         <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
@@ -141,13 +141,9 @@
         <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="{{ asset('material') }}/demo/demo.js"></script>
-        
+
         <script src="{{ asset('material') }}/js/settings.js"></script>
 
-        <!-- js -->
-        <script src="{{ asset('material') }}/dist/jquery.fileuploader.min.js" type="text/javascript"></script>
-        <script src="{{ asset('material') }}/dist/custom.js" type="text/javascript"></script>
-        
         @stack('js')
     </body>
 </html>

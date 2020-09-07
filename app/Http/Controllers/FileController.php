@@ -41,29 +41,35 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        $files = $request->file('files');
+        $file = $request->file('file_name');
         $request->validate([
-            'files[]' => 'unique:files',
+            'file_name' => 'required|unique:files',
+            'title' => 'required|unique:files',
         ]);
 
-        foreach($files as $file)
-        {
-            $destinationPath = 'uploads/' . date('Y') . '/' . date('F') . '/' . date('d');
-            
-            $fileName = $file->getClientOriginalName(); //Get Image Name
-            $fileSize = $file->getSize(); //Get Image Size
-            $extension = $file->getClientOriginalExtension();  //Get Image Extension
-        
-            $model = new File();
-            $model->file_name = $fileName;
-            $model->file_size = $fileSize;
-            $model->file_extension = $extension;
-            $model->file_path = $destinationPath;
-            $model->folder_id = $request->post('folder_id');
+        $destinationPath = 'uploads/' . date('Y') . '/' . date('F') . '/' . date('d');
 
-            if($model->save()){
-                $file->move($destinationPath, $fileName);
-            }
+        $fileName = $file->getClientOriginalName(); //Get Image Name
+        $fileSize = $file->getSize(); //Get Image Size
+        $extension = $file->getClientOriginalExtension();  //Get Image Extension
+
+        $model = new File();
+        $model->file_name = $fileName;
+        $model->file_size = $fileSize;
+        $model->file_extension = $extension;
+        $model->file_path = $destinationPath;
+        $model->folder_id = $request->post('folder_id');
+        $model->category_id = $request->post('category_id');
+        $model->organ_id = $request->post('organ_id');
+        $model->type_id = $request->post('type_id');
+        $model->title = $request->post('title');
+        $model->document_number = $request->post('document_number');
+        $model->document_date = $request->post('document_date');
+        $model->document_author = $request->post('document_author');
+        $model->document_description = $request->post('document_description');
+
+        if($model->save()){
+            $file->move($destinationPath, $fileName);
         }
 
         return redirect()->back();
