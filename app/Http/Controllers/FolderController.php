@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Folder;
 use App\File;
+use App\Language;
 use App\Type;
 use Illuminate\Http\Request;
 
@@ -60,11 +61,13 @@ class FolderController extends Controller
         $files = File::query()->where('folder_id', $folder->id)->get();
         $categories = Category::query()->where('status', 1)->get();
         $types = Type::query()->get();
+        $languages = Language::query()->get();
         return view('folders.show', [
             'folder' => $folder,
             'files' => $files,
             'categories' => $categories,
-            'types' => $types
+            'types' => $types,
+            'languages' => $languages
         ]);
     }
 
@@ -117,12 +120,14 @@ class FolderController extends Controller
         $files = File::query()->where('folder_id', $folder->id)->get();
         $categories = Category::query()->where('status', 1)->get();
         $types = Type::query()->get();
+        $languages = Language::query()->get();
 
         return view('modal.create-file', [
             'folder' => $folder,
             'files' => $files,
             'categories' => $categories,
-            'types' => $types
+            'types' => $types,
+            'languages' => $languages
         ])->render();
     }
 

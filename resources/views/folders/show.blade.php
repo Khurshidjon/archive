@@ -68,23 +68,20 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Material Dashboard Heading</h4>
-                    <p class="card-category">Created using Roboto Font Family</p>
+                    <h4 class="card-title">{{ $folder->parent?$folder->parent->title:'Path:' }} / <small>{{ $folder->title }}</small></h4>
                 </div>
                 <div class="card-body">
                     <div id="typography">
                         <div class="card-title">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-2">
                                     <h2><i style="color: #ffc700;" class="material-icons">folder_open</i> <b>Archive</b></h2>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-8">
+                                    @include('modal.search')
+                                </div>
+                                <div class="col-2">
                                     <h2 class="text-right">
-                                        <a href="#" class="btn btn-warning search_button" data-folder_id="{{ $folder->id }}" data-toggle="modal" data-target="#uploadFileModal" rel="tooltip" title="Поиск">
-                                            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                                                <path fill="currentColor" d="M16.5,12C19,12 21,14 21,16.5C21,17.38 20.75,18.21 20.31,18.9L23.39,22L22,23.39L18.88,20.32C18.19,20.75 17.37,21 16.5,21C14,21 12,19 12,16.5C12,14 14,12 16.5,12M16.5,14A2.5,2.5 0 0,0 14,16.5A2.5,2.5 0 0,0 16.5,19A2.5,2.5 0 0,0 19,16.5A2.5,2.5 0 0,0 16.5,14M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V13.03C20.85,11.21 18.82,10 16.5,10A6.5,6.5 0 0,0 10,16.5C10,18.25 10.69,19.83 11.81,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z" />
-                                            </svg>
-                                        </a>
                                         <a href="#" class="btn btn-primary create_file_button" data-folder_id="{{ $folder->id }}" data-toggle="modal" data-target="#uploadFileModal" rel="tooltip" title="Загрузить">
                                             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                                 <path fill="currentColor" d="M19.35,10.04C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.04C2.34,8.36 0,10.91 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.04M19,18H6A4,4 0 0,1 2,14C2,11.95 3.53,10.24 5.56,10.03L6.63,9.92L7.13,8.97C8.08,7.14 9.94,6 12,6C14.62,6 16.88,7.86 17.39,10.43L17.69,11.93L19.22,12.04C20.78,12.14 22,13.45 22,15A3,3 0 0,1 19,18M8,13H10.55V16H13.45V13H16L12,9L8,13Z" />

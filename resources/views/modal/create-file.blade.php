@@ -108,6 +108,16 @@
                     @endif
                 </div>
             </div>
+            <div class="col-md-12 mt-4">
+                <div class="form-group">
+                    <select name="language_id" data-placeholder="Begin typing a name to filter..." multiple class="chosen-select">
+                        <option value="">Маълумот тилини танланг</option>
+                        @foreach($languages as $language)
+                            <option value="{{ $language->id }}">{{ $language->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
         <hr>
         <div class="form-group">

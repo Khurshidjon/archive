@@ -75,11 +75,11 @@
                     <div id="typography">
                         <div class="card-title">
                            <div class="row">
-                               <div class="col-6">
+                               <div class="col-2">
                                    <h2><i style="color: #ffc700;" class="material-icons">folder_open</i> <b>Archive</b></h2>
                                </div>
-                               <div class="col-6">
-                                   
+                               <div class="col-10">
+                                    @include('modal.search')
                                </div>
                            </div>
                         </div>
@@ -92,7 +92,7 @@
                                             <ul class="nested">
                                                 <li><a href="#" class="parent_folder" data-parent="{{ $folder->id }}" data-toggle="modal" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
                                                 @foreach($folder->children as $file)
-                                                    <li>{{ $file->title }}</li>
+                                                    <li><a href="{{ route('folders.show', [$file]) }}">{{ $file->title }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>

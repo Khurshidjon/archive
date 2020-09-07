@@ -11,4 +11,8 @@ class Folder extends Model
     {
         return $this->hasMany(Folder::class, 'parent_id', 'id');
     }
+    public function parent()
+    {
+        return $this->hasOne(Folder::class, 'id', 'parent_id');
+    }
 }

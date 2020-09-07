@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d723ade0-3556-4300-b6e0-9b1c94245a61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Folder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Folder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FolderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FolderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/folders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/folders/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/folders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/folders/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modal/create-file.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modal/create-file.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/modal/search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modal/search.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +184,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599117881287</updated>
-      <workItem from="1599117882668" duration="50585000" />
+      <workItem from="1599117882668" duration="54527000" />
     </task>
     <servers />
   </component>
@@ -204,5 +208,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1599217741585" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1599487311891">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1599487311891" />
   </component>
 </project>
