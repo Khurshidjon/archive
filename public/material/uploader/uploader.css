@@ -70,4 +70,10 @@
 .optional_star{
     color: #039d2d !important;
 }
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px !important;
+}
 

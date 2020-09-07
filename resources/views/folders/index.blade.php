@@ -68,8 +68,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Material Dashboard Heading</h4>
-                    <p class="card-category">Created using Roboto Font Family</p>
+                    <h4 class="card-title">Archive</h4>
                 </div>
                 <div class="card-body">
                     <div id="typography">
@@ -88,7 +87,7 @@
                                 <ul id="myUL">
                                     <li><a href="#" data-toggle="modal" class="create_new_folder" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
                                     @foreach($folders as $folder)
-                                        <li><span class="caret"> {{ $folder->title }}</span>
+                                        <li><span class="caret"> <a href="{{ route('folders.show', [$folder]) }}">{{ $folder->title }}</a></span>
                                             <ul class="nested">
                                                 <li><a href="#" class="parent_folder" data-parent="{{ $folder->id }}" data-toggle="modal" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
                                                 @foreach($folder->children as $file)

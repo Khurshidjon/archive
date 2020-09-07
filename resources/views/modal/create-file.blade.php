@@ -57,7 +57,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="category_id">Category <span class="text-success"><i>*</i></span></label>
-                    <select class="form-control" title="Ixtiyoriy" name="category_id" id="category_id">
+                    <select class="form-control select2" title="Ixtiyoriy" name="category_id" id="category_id">
                         <option value="">Kategoriyani tanlang</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -73,7 +73,7 @@
             <div class="col-md-6 mb-4">
                 <div class="form-group">
                     <label for="type_id">Type <span class="text-success"><i>*</i></span></label>
-                    <select class="form-control" name="type_id" title="Ixtiyoriy" id="type_id">
+                    <select class="form-control select2" name="type_id" title="Ixtiyoriy" id="type_id">
                         <option value="">Hujjat tipni tanlang</option>
                         @foreach($types as $type)
                             <option value="{{ $type->id }}">{{ $type->title }}</option>
@@ -110,7 +110,7 @@
             </div>
             <div class="col-md-12 mt-4">
                 <div class="form-group">
-                    <select name="language_id" data-placeholder="Begin typing a name to filter..." multiple class="chosen-select">
+                    <select name="language_id[]" multiple class="form-control select2" id="language_id">
                         <option value="">Маълумот тилини танланг</option>
                         @foreach($languages as $language)
                             <option value="{{ $language->id }}">{{ $language->title }}</option>

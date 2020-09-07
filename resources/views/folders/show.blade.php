@@ -68,7 +68,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">{{ $folder->parent?$folder->parent->title:'Path:' }} / <small>{{ $folder->title }}</small></h4>
+                    <h4 class="card-title">{{ $folder->parent?$folder->parent->title:'Путь:' }} / <small>{{ $folder->title }}</small></h4>
                 </div>
                 <div class="card-body">
                     <div id="typography">
@@ -96,11 +96,11 @@
                                 <ul id="myUL">
                                     <li><a href="#" class="create_new_folder" data-toggle="modal" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
                                     @foreach($folder->children as $childFolder)
-                                        <li><span class="caret"> {{ $childFolder->title }}</span>
+                                        <li><span class="caret"> <a href="{{ route('folders.show',[$childFolder]) }}">{{ $childFolder->title }}</a></span>
                                             <ul class="nested">
                                                 <li><a href="#" class="parent_folder" data-parent="{{ $childFolder->id }}" data-toggle="modal" data-target=".bd-example-modal-sm">&#x2b; Create new</a></li>
                                                 @foreach($childFolder->children as $child)
-                                                    <li>{{ $child->title }}</li>
+                                                    <li><a href="{{ route('folders.show', [$child]) }}">{{ $child->title }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -215,7 +215,7 @@
 
     <!-- Small modal -->
 
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-sm" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <form action="{{ route('folders.store') }}" class="container folder_modal" method="post">
@@ -234,7 +234,7 @@
     </div>
 
   <!-- Upload Modal -->
-    <div class="modal fade" id="uploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="uploadFileModal" style="overflow:hidden" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content"></div>
         </div>
@@ -327,6 +327,14 @@
                 var fileSize = e.target.files[0].size / 1024
                 $('#uploader-text').html(fileName +  ' <span style="color: rgb(120, 155, 236)">fayli tanlandi.</span>' + Math.floor(fileSize) +  ' <span style="color: rgb(120, 155, 236)"> KB.</span>')
             });
+
+
+            $('.select2').select2();
+
+            $('#language_id').select2({
+                dropdownParent: $("#uploadFileModal .model-content")
+            });
+
         });
     </script>
     @endpush
