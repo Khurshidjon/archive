@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
+
 class HomeController extends Controller
 {
     /**
@@ -21,7 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('projects.files.index');
+        $files = File::all();
+        return view('projects.files.index', [
+            'files' => $files
+        ]);
     }
     /**
      * Show the application dashboard.
