@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'files', 'titlePage' => __('Files')])
+@extends('layouts.app', ['activePage' => 'folders', 'titlePage' => __('Files')])
 
 @section('content')
     <style>

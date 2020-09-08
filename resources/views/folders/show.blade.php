@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'files', 'titlePage' => __('Files')])
+@extends('layouts.app', ['activePage' => 'folders', 'titlePage' => __('Files')])
 
 @section('content')
     <style>
@@ -236,7 +236,7 @@
   <!-- Upload Modal -->
     <div class="modal fade" id="uploadFileModal" style="overflow:hidden" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-            <div class="modal-content"></div>
+            @include('modal.create-file')
         </div>
     </div>
 
@@ -254,6 +254,9 @@
     @push('js')
     <script>
         $(function () {
+            $('#document_date').datepicker({
+                autoclose: true,
+            });
             $('.rename').on("click", function () {
                 var url = $(this).attr('data-url')
                 var title = $(this).attr('data-title')
@@ -309,7 +312,7 @@
                 })
             })
 
-            $('.create_file_button').on('click', function () {
+            /*$('.create_file_button').on('click', function () {
                 var folder_id = $(this).attr('data-folder_id');
                 $.ajax({
                     url: '{{ route('create.file.modal') }}',
@@ -321,20 +324,25 @@
                     }
                 })
             });
-
+*/
             $('#uploadFileModal').on('change', '#uploader', function(e){
                 var fileName = e.target.files[0].name;
                 var fileSize = e.target.files[0].size / 1024
                 $('#uploader-text').html(fileName +  ' <span style="color: rgb(120, 155, 236)">fayli tanlandi.</span>' + Math.floor(fileSize) +  ' <span style="color: rgb(120, 155, 236)"> KB.</span>')
             });
-
-
-            $('.select2').select2();
-
-            $('#language_id').select2({
-                dropdownParent: $("#uploadFileModal .model-content")
+            $('.select2').select2({
+                placeholder: 'Выберите пожалуйста',
+                allowClear: true
             });
+            $('#category_id').on('change', function(){
+                $.ajax({
+                    url: '{{ route('category.children') }}',
+                    type: '',
+                    success: function (data) {
 
+                    }
+                })
+            })
         });
     </script>
     @endpush

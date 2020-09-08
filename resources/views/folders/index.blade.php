@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'files', 'titlePage' => __('Files')])
+@extends('layouts.app', ['activePage' => 'folders', 'titlePage' => __('Files')])
 
 @section('content')
     <style>
@@ -183,6 +183,9 @@
                         $('#folder_title').val('');
                         $('.folder_modal').find("#hidden_parent").val(parent_id);
                     });
+                });
+                $('.select2').select2({
+                    placeholder: 'Выберите пожалуйста'
                 });
             </script>
         @endpush

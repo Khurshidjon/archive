@@ -13,20 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'FolderController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('search-modal', 'FolderController@searchModal')->name('search.modal');
+    Route::get('change-category-children', 'FolderController@categoryChildren')->name('category.children');
     Route::get('search-result', 'FolderController@searchResult')->name('search.result');
     Route::get('create-file-modal', 'FolderController@createFileModal')->name('create.file.modal');
     Route::resource('folders', 'FolderController');

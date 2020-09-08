@@ -29,7 +29,7 @@ class FolderController extends Controller
         $type_selected = null;
         $document_number = null;
         $language_selected = null;
-        
+
         return view('folders.index', [
             'folders' => $folders,
             'categories' => $categories,
@@ -81,7 +81,7 @@ class FolderController extends Controller
         $categories = Category::query()->where('status', 1)->get();
         $types = Type::query()->get();
         $languages = Language::query()->get();
-        
+
         $title = null;
         $author = null;
         $category_selected = null;
@@ -235,5 +235,11 @@ class FolderController extends Controller
             'document_number' => $document_number,
             'language_selected' => $language_selected
         ]);
+    }
+
+    public function categoryChildren()
+    {
+
+        return 'ok';
     }
 }
