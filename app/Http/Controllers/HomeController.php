@@ -23,4 +23,13 @@ class HomeController extends Controller
     {
         return view('projects.files.index');
     }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show()
+    {
+        return view('projects.files.show');
+    }
 }
